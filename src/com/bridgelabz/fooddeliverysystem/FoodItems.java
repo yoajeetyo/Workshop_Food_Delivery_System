@@ -33,4 +33,24 @@ public class FoodItems {
 				+ ", itemName=" + itemName + "]";
 	}
 
+	public void setTaste(Taste tasteChoice) {
+		this.taste=tasteChoice;
+		
+	}
+
+	public void setCatogery(Category catogeryChoice) {
+		this.category = catogeryChoice;
+		
+	}
+
+	public void setVegType(VegType vegTypeChoice) {
+		this.vegType = vegTypeChoice;
+		
+	}
+	
+	public void setName(String itemName) {
+		this.itemName = itemName;
+		
+	}
+
 }

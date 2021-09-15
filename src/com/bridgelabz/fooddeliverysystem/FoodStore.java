@@ -4,10 +4,23 @@ package com.bridgelabz.fooddeliverysystem;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 public class FoodStore {
-
+	
+	private static FoodStore instanceFoodStore;
 	private List<FoodItems> foodlist = new ArrayList();
+	
+	private FoodStore() {
+		
+	}
+	
+	public static synchronized FoodStore getInstance() {
+		if (instanceFoodStore==null) {
+			instanceFoodStore=new FoodStore();
+		}
+		return instanceFoodStore;
+	}
 
 	public void add(FoodItems foodItems) {
 		foodlist.add(foodItems);

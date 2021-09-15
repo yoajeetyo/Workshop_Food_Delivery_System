@@ -5,52 +5,44 @@ import java.util.Scanner;
 //Controller Layer
 
 public class Application {
-	FoodStore foodStore = new FoodStore();
-	UserInterface userInterface = new UserInterface();
-	
+	FoodStore foodStore = FoodStore.getInstance();
+	UserInterface userInterface = UserInterface.getInstance();
+
 	public static void main(String[] args) {
-		
-		UserInterface userInterface = new UserInterface();
+		UserInterface userInterface = UserInterface.getInstance();
 		userInterface.showUserMenu();
 	}
-	
+
 	public void handleUserSelection(int n) {
 
 		switch (n) {
-		
+
 		case 1:
-			AppleJuice appleJuice = new AppleJuice();
-			appleJuice.setPrice(100);
-			HakkaNoodle hakkaNoodle = new HakkaNoodle();
-			hakkaNoodle.setPrice(200);
-			ItalianMomos italianMomos = new ItalianMomos();
-			italianMomos.setPrice(300);
-			MasalaDosa masalaDosa = new MasalaDosa();
-			masalaDosa.setPrice(400);
+			FoodItems foodItems1 = userInterface.createItems();
+			foodStore.add(foodItems1);
+			break;
 
-			
-			foodStore.add(appleJuice);
-			foodStore.add(hakkaNoodle);
-			foodStore.add(italianMomos);
-			foodStore.add(masalaDosa);
-			
+		case 2:
+			System.out.println("Enter the food item you want to Remove");
+			Scanner scanner = new Scanner(System.in);
+			String foodName = scanner.nextLine();
+			FoodItems foodItems = foodStore.getFoodItem(foodName);
+			foodStore.remove(foodItems);
+			break;
+
+		case 3:
+			System.out.println("Your food items are : ");
+			userInterface.print(foodStore.getFoodList());
+			break;
+
+		case 4:
+			 System.out.println("Enter the name which you want to edit: ");
+             String name = new Scanner(System.in).nextLine();
+             FoodItems food = foodStore.getFoodItem(name);
+             userInterface.edit(food);
 			break;
 			
-         case 2:
-        	 System.out.println("Enter the food item you want to Remove");
-        	 Scanner scanner = new Scanner(System.in);
-        	 String foodName = scanner.nextLine();
-        	 FoodItems foodItems = foodStore.getFoodItem(foodName);
-        	 foodStore.remove(foodItems);
-			break;
-			
-         case 3:
-        	 System.out.println("Your food items are : ");
-        	 userInterface.print(foodStore.getFoodList());
- 			break;
-
-         case 4:
-        	 
+		case 5:
 			break;
 		}
 	}
