@@ -1,5 +1,6 @@
 package com.bridgelabz.fooddeliverysystem;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 //Controller Layer
@@ -36,12 +37,20 @@ public class Application {
 			break;
 
 		case 4:
-			 System.out.println("Enter the name which you want to edit: ");
-             String name = new Scanner(System.in).nextLine();
-             FoodItems food = foodStore.getFoodItem(name);
-             userInterface.edit(food);
+			System.out.println("Enter the name which you want to edit: ");
+			String name = new Scanner(System.in).nextLine();
+			try {
+				FoodItems food = foodStore.getFoodItem(name);
+				if (food == null) {
+					throw new NoSuchElementException();
+				} else {
+					userInterface.edit(food);
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("Item is not present in list");
+			}
 			break;
-			
+
 		case 5:
 			break;
 		}

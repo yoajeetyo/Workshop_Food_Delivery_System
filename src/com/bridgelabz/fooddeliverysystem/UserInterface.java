@@ -1,6 +1,8 @@
 package com.bridgelabz.fooddeliverysystem;
 
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -9,10 +11,12 @@ import java.util.Scanner;
 public class UserInterface {
 	
 	private static UserInterface instanceUserInterface;
-	public void print(List<FoodItems> foodlist) {
-		for (int i = 0; i < foodlist.size(); i++) {
-			System.out.println(foodlist.get(i));
-		}
+	public void print(Set set) {
+//		for (int i = 0; i < foodlist.size(); i++) {
+//			System.out.println(foodlist.get(i));
+//		}
+//		foodlist.stream().forEach(foodItems -> System.out.println(foodItems));
+		set.forEach(System.out::println);
 	}
 	
     private UserInterface() {
